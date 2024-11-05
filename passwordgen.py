@@ -1,12 +1,21 @@
 import random
 import pyperclip
+import sys
 
 text = '1234567890QWERTYUIOP[]\ASDFGHJKLZXCVBNM./qwertyuiopasdfghjklzxcvbnm;:<>?{}#%!()_-=+'
 alphabet = list(text)
-list = random.sample(alphabet, k=20)
-password = ''.join(list)
 
-print("Here's your password:", password)
+print('Select your password length (Limit is 100)')
+k = None
+while k not in (0, 101):
+            k = int(input('> '))
+            if k > 1 and k < 101:
+                list = random.sample(alphabet, k=k)
+                password = ''.join(list)
+                print("Here's your password:", password)
+                break
+            else:
+                print('Try again.')
 
 retry = input('Do you want to retry? y/n ')
 
@@ -18,17 +27,17 @@ if retry == 'y':
         pyperclip.copy(password)
         print('Copied.')
         input('Press enter to quit.')
-        quit()
+        sys.exit(1)
     else:
         input('Press enter to quit.')
-        quit()
+        sys.exit(1)
 else:
     copy = input('Do you want to copy it? y/n ')
     if copy == 'y':
         pyperclip.copy(password)
         print('Copied.')
         input('Press enter to quit.')
-        quit()
+        sys.exit(1)
     else:
         input('Press enter to quit.')
-        quit()
+        sys.exit(1)
