@@ -7,15 +7,18 @@ alphabet = list(text)
 
 print('Select your password length (Limit is 100)')
 k = None
-while k not in (0, 101):
+while k not in range(0, 101):
+        try:
             k = int(input('> '))
-            if k > 1 and k < 101:
+            if k in range(0, 101):
                 list = random.sample(alphabet, k=k)
                 password = ''.join(list)
                 print("Here's your password:", password)
                 break
             else:
                 print('Try again.')
+        except ValueError:
+            print('Please enter a valid number.')
 
 retry = input('Do you want to retry? y/n ')
 
